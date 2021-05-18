@@ -1887,6 +1887,9 @@ for (mime, fmt) in (
         ENV["GKS_ENCODING"] = "utf8"
         GR.emergencyclosegks()
         filepath = tempname() * "." * $fmt
+        if isdir("/dev/shm/")
+            filepath = joinpath("/dev/shm/", basename(filepath))
+        end
         env = get(ENV, "GKSwstype", "0")
         ENV["GKSwstype"] = $fmt
         ENV["GKS_FILEPATH"] = filepath
